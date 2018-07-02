@@ -1,0 +1,19 @@
+#!/bin/bash
+
+mkdir -p /var/vcap/sys/log/wait-file/
+
+fail_on_start=<%= p('fail_on_start') %>
+
+if [[ ${fail_on_start} == "true" ]]; then
+  echo "fail_on_start is true, exit 1 now." >> /var/vcap/sys/log/wait-file/wail.log
+  exit 1
+fi
+
+while [ ! -f /tmp/clear-wait ]; do
+  echo "waiting for file /tmp/clear-wait..." >> /var/vcap/sys/log/wait-file/wail.log
+  sleep 5
+done
+
+echo "file /tmp/clear-wait exist, success" >> /var/vcap/sys/log/wait-file/wail.log
+exit 0
+

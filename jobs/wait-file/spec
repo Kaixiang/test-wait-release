@@ -1,0 +1,12 @@
+---
+name: wait-file
+
+templates:
+  wait.erb: bin/disks/wait
+
+packages: []
+
+properties:
+  fail_on_start:
+    description: whether wait will exit 1 on start-up
+    default: false
